@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="logger" class="logger.ConsoleEventLogger"/>
+
+    <bean id="fileLogger" class="logger.FileEventLogger" init-method="init">
+        <constructor-arg type="java.lang.String" value="${pathLoggerC}"/>
+    </bean>
+
+    <bean id="cacheFileLogger" class="logger.CacheFileLogger" init-method="init" destroy-method="destroy">
+        <constructor-arg value="${pathLoggerF}"/>
+        <constructor-arg value="5"/>
+    </bean>
+
+    <bean id="combimeEventLogger" class="logger.CombinedEventLogger">
+        <constructor-arg>
+            <list>
+                <ref bean="fileLogger"/>
+                <ref bean="logger"/>
+                <ref bean="cacheFileLogger"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
