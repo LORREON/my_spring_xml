@@ -1,4 +1,4 @@
-package beans;
+package org.beans;
 
 
 import java.text.DateFormat;

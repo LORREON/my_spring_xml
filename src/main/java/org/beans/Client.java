@@ -1,4 +1,4 @@
-package beans;
+package org.beans;
 
 public class Client {
     private String id;

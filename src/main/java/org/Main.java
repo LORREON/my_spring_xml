@@ -1,7 +1,9 @@
-import beans.App;
-import beans.Client;
-import beans.Event;
-import beans.EventType;
+package org;
+
+import org.beans.App;
+import org.beans.Client;
+import org.beans.Event;
+import org.beans.EventType;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

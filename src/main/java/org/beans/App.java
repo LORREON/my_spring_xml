@@ -1,6 +1,6 @@
-package beans;
+package org.beans;
 
-import logger.EventLogger;
+import org.logger.EventLogger;
 
 import java.util.Map;
 

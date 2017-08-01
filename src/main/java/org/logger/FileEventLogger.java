@@ -1,9 +1,9 @@
-package logger;
+package org.logger;
 
 import java.io.File;
 import java.io.IOException;
 
-import beans.Event;
+import org.beans.Event;
 import org.apache.commons.io.FileUtils;
 
 
