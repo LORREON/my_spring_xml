@@ -9,6 +9,7 @@ import java.util.Map;
 
 @Component
 public class App {
+
     @Autowired
     private Client client;
     @Resource(name = "logger")
@@ -26,8 +27,6 @@ public class App {
             logger = this.defaultLogger;
         }
         logger.logEvent(event);
-
-
     }
 
     public void setClient(Client client) {

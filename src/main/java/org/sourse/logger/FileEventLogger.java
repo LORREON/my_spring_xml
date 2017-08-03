@@ -16,10 +16,14 @@ public class FileEventLogger implements EventLogger {
 
     private File file;
 
-    @Value("${pathLoggerC}")
+    @Value("${pathLoggerF}")
     private String filename;
 
     public FileEventLogger() {
+    }
+
+    public FileEventLogger(String filename) {
+        this.filename = filename;
     }
 
     @PostConstruct

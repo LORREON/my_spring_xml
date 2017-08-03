@@ -1,17 +1,17 @@
 package org.sourse.logger;
 
 import org.sourse.beans.Event;
+import org.springframework.stereotype.Component;
 
 
+import javax.annotation.Resource;
 import java.util.Collection;
 
+@Component
 public class CombinedEventLogger implements EventLogger {
 
+    @Resource(name = "eventLoggerCollection")
     private Collection<EventLogger> loggers;
-
-    public CombinedEventLogger(Collection c) {
-        this.loggers = c;
-    }
 
 
     @Override

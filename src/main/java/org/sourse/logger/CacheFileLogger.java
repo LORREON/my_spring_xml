@@ -13,7 +13,7 @@ public class CacheFileLogger extends FileEventLogger {
 
     @Value("${countLog}")
     private int cacheSize;
-    @Value("${pathLoggerF}")
+    @Value("${pathLoggerC}")
     private String fileName;
 
     private List<Event> cache;
@@ -40,8 +40,10 @@ public class CacheFileLogger extends FileEventLogger {
 
     }
 
+    @PreDestroy
     private void writeEventsFromCache() {
         cache.stream().forEach(super::logEvent);
+        System.out.println("Записано в кеш "+cache.stream());
     }
 
 
