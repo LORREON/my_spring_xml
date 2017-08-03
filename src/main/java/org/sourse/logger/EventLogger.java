@@ -1,6 +1,6 @@
-package org.logger;
+package org.sourse.logger;
 
-import org.beans.Event;
+import org.sourse.beans.Event;
 
 public interface EventLogger {
     void logEvent(Event event);

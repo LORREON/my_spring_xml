@@ -1,19 +1,19 @@
-package org;
+package org.sourse;
 
-import org.beans.App;
-import org.beans.Client;
-import org.beans.Event;
-import org.beans.EventType;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.sourse.beans.*;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
+
+        MyBean bean = (MyBean) ctx.getBean("myBean");
+        bean.printMsg();
 
         Client client = ctx.getBean(Client.class);
         System.out.println("Client says: " + client.getGreeting());
@@ -27,7 +27,7 @@ public class Main {
         event = ctx.getBean(Event.class);
         app.logEvent(null, event, "User: 1 - Event_third");
 
-        ctx.close();
+
 
     }
 }

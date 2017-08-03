@@ -1,4 +1,4 @@
-package org.beans;
+package org.sourse.beans;
 
 public enum EventType {
     INFO, ERROR;

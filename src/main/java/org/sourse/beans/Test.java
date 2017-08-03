@@ -1,4 +1,4 @@
-package org.beans;
+package org.sourse.beans;
 
 import java.io.File;
 

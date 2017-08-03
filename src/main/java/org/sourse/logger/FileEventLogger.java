@@ -1,22 +1,28 @@
-package org.logger;
+package org.sourse.logger;
 
 import java.io.File;
 import java.io.IOException;
 
-import org.beans.Event;
+import org.sourse.beans.Event;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 
-
+@Component("fileLogger")
 public class FileEventLogger implements EventLogger {
 
     private File file;
+
+    @Value("${pathLoggerC}")
     private String filename;
 
-    public FileEventLogger(String filename) {
-        this.filename = filename;
+    public FileEventLogger() {
     }
 
+    @PostConstruct
     public void init() {
         file = new File(filename);
         if (!file.exists()) {
@@ -41,4 +47,11 @@ public class FileEventLogger implements EventLogger {
         }
     }
 
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
 }
