@@ -2,12 +2,14 @@ package org.sourse.beans;
 
 import org.sourse.logger.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Map;
 
-@Component
+@Service
 public class App {
 
     @Autowired
@@ -23,7 +25,7 @@ public class App {
         event.setMsg(message);
 
         EventLogger logger = loggers.get(type);
-        if(logger == null){
+        if (logger == null) {
             logger = this.defaultLogger;
         }
         logger.logEvent(event);

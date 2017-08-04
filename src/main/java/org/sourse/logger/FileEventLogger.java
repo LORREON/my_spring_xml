@@ -2,6 +2,7 @@ package org.sourse.logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLOutput;
 
 import org.sourse.beans.Event;
 import org.apache.commons.io.FileUtils;
@@ -16,7 +17,7 @@ public class FileEventLogger implements EventLogger {
 
     private File file;
 
-    @Value("${pathLoggerF}")
+    @Value("${events.file:target/events_log.txt}")
     private String filename;
 
     public FileEventLogger() {
@@ -45,7 +46,8 @@ public class FileEventLogger implements EventLogger {
     @Override
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.toString()+"\n", true);
+            System.out.println ("  ::record log...");
+            FileUtils.writeStringToFile(file, event.toString() + "\n", true);
         } catch (IOException e) {
             e.printStackTrace();
         }

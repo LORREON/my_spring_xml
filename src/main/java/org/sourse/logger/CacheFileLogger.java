@@ -1,9 +1,11 @@
 package org.sourse.logger;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.sourse.beans.Event;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +15,18 @@ public class CacheFileLogger extends FileEventLogger {
 
     @Value("${countLog}")
     private int cacheSize;
-    @Value("${pathLoggerC}")
-    private String fileName;
-
     private List<Event> cache;
 
-    public CacheFileLogger() {
-        super.setFilename(fileName);
+
+    @PostConstruct
+    public void initCache() {
         this.cache = new ArrayList<Event>(cacheSize);
     }
 
+
     @PreDestroy
     public void destroy() {
+        System.out.println("destroy");
         if (!cache.isEmpty()) {
             writeEventsFromCache();
         }
@@ -40,10 +42,8 @@ public class CacheFileLogger extends FileEventLogger {
 
     }
 
-    @PreDestroy
     private void writeEventsFromCache() {
         cache.stream().forEach(super::logEvent);
-        System.out.println("Записано в кеш "+cache.stream());
     }
 
 
