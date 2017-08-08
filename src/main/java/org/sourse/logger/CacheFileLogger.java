@@ -1,6 +1,5 @@
 package org.sourse.logger;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.sourse.beans.Event;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

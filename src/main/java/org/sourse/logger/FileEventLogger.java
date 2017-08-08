@@ -2,7 +2,6 @@ package org.sourse.logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLOutput;
 
 import org.sourse.beans.Event;
 import org.apache.commons.io.FileUtils;

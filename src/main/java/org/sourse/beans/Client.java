@@ -1,13 +1,12 @@
 package org.sourse.beans;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 
 public class Client {
 
     private String id;
     private String name;
+    @Value("Hi #{systemProperties['user.name']}")
     private String greeting;
 
 

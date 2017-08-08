@@ -4,33 +4,24 @@ import org.sourse.beans.Client;
 import org.sourse.beans.EventType;
 import org.sourse.logger.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.Resource;
-import java.text.DateFormat;
 import java.util.*;
 
 @Configuration
 @PropertySource("classpath:client.properties")
 public class AppConfig {
 
-
     @Autowired
     private Environment environment;
-
 
     @Bean
     public Date nowDate() {
         return new java.util.Date();
-    }
-
-    @Bean
-    public DateFormat dateFormat() {
-        return DateFormat.getDateInstance();
     }
 
 
@@ -41,13 +32,10 @@ public class AppConfig {
     @Resource(name = "fileLogger")
     private EventLogger fileEventLogger;
 
-
     @Resource(name = "combinedEventLogger")
     private EventLogger combinedEventLogger;
 
-
-    @Autowired
-    @Qualifier("cacheFileLogger")
+    @Resource(name = "cacheFileLogger")
     private EventLogger cacheFileLogger;
 
 
@@ -67,14 +55,12 @@ public class AppConfig {
         return list;
     }
 
-
     @Bean
     public Client client() {
         Client client = new Client();
         client.setId(environment.getRequiredProperty("id"));
         client.setName(environment.getRequiredProperty("name"));
-        client.setGreeting(environment.getProperty("greeting"));
+
         return client;
     }
-
 }

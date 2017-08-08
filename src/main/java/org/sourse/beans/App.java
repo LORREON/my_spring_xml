@@ -2,8 +2,7 @@ package org.sourse.beans;
 
 import org.sourse.logger.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,8 +13,10 @@ public class App {
 
     @Autowired
     private Client client;
-    @Resource(name = "logger")
+
+    @Value("#{T(org.sourse.beans.Event).isDay(8,17) ? logger : cacheFileLogger}")
     private EventLogger defaultLogger;
+
     @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
 
