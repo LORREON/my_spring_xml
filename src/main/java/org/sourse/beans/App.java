@@ -18,6 +18,7 @@ public class App {
     private Client client;
 
     @Value("#{T(org.sourse.beans.Event).isDay(8,17) ? cacheFileLogger : logger }")
+
     private EventLogger defaultLogger;
 
     @Resource(name = "loggerMap")
