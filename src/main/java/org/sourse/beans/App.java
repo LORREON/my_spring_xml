@@ -1,9 +1,9 @@
 package org.sourse.beans;
 
+import org.sourse.aspects.StatisticsAspect;
 import org.sourse.logger.EventLogger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.DependsOn;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,11 +11,15 @@ import java.util.Map;
 
 @Service
 public class App {
+    @Autowired
+    private StatisticsAspect statisticsAspect;
 
     @Autowired
     private Client client;
-    @Resource(name = "logger")
+
+    @Value("#{T(org.sourse.beans.Event).isDay(8,17) ? cacheFileLogger : logger }")
     private EventLogger defaultLogger;
+
     @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
 
@@ -29,6 +33,15 @@ public class App {
             logger = this.defaultLogger;
         }
         logger.logEvent(event);
+    }
+
+    public void outputLoggingCounter() {
+        if (statisticsAspect != null) {
+            System.out.println("Loggers statistics. Number of calls: ");
+            for (Map.Entry<Class<?>, Integer> entry: statisticsAspect.getCounter().entrySet()) {
+                System.out.println("    " + entry.getKey().getSimpleName() + ": " + entry.getValue());
+            }
+        }
     }
 
     public void setClient(Client client) {

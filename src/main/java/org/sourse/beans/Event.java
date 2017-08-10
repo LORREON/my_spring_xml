@@ -2,10 +2,12 @@ package org.sourse.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Component
@@ -18,8 +20,14 @@ public class Event {
     @Autowired
     @Qualifier("nowDate")
     private Date date;
-    @Autowired
+
+    @Value("#{T(java.text.DateFormat).getDateInstance()}")
     private DateFormat dateFormat;
+
+    public static boolean isDay(int h1, int h2) {
+        LocalTime time = LocalTime.now();
+        return time.getHour() > h1 && time.getHour() < h2;
+    }
 
     public Event() {
         this.id = 0 + (int) (Math.random() * 1000);

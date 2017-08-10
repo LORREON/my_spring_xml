@@ -1,6 +1,5 @@
 package org.sourse.logger;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import org.sourse.beans.Event;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -43,7 +42,9 @@ public class CacheFileLogger extends FileEventLogger {
     }
 
     private void writeEventsFromCache() {
+        System.out.println("Start cache:");
         cache.stream().forEach(super::logEvent);
+        System.out.println("End cache.");
     }
 
 

@@ -16,9 +16,10 @@ public class CombinedEventLogger implements EventLogger {
 
     @Override
     public void logEvent(Event event) {
-
+        System.out.println("Start CombineLogger:");
         for (EventLogger logger : loggers) {
             logger.logEvent(event);
         }
+        System.out.println("End CombineLogger.");
     }
 }

@@ -18,7 +18,13 @@ public class Main {
         Client client = ctx.getBean(Client.class);
         System.out.println("Client says: " + client.getGreeting());
 
+        //Collection
         Event event = ctx.getBean(Event.class);
+        app.logEvent(EventType.ERROR, event, "User: 1 - Event_9");
+
+
+        //AOP @Around
+        event = ctx.getBean(Event.class);
         app.logEvent(EventType.INFO, event, "User: 1 - Event_1");
 
         event = ctx.getBean(Event.class);
@@ -30,15 +36,24 @@ public class Main {
         event = ctx.getBean(Event.class);
         app.logEvent(EventType.INFO, event, "User: 1 - Event_4");
 
+        //SpEL
         event = ctx.getBean(Event.class);
-        app.logEvent(EventType.INFO, event, "User: 1 - Event_5");
-
-
-        event = ctx.getBean(Event.class);
-        app.logEvent(EventType.ERROR, event, "User: 1 - Event_combine");
+        app.logEvent(null, event, "User: 1 - Event_5");
 
         event = ctx.getBean(Event.class);
-        app.logEvent(null, event, "User: 1 - Event_console");
+        app.logEvent(null, event, "User: 1 - Event_6");
+
+        event = ctx.getBean(Event.class);
+        app.logEvent(null, event, "User: 1 - Event_7");
+
+        event = ctx.getBean(Event.class);
+        app.logEvent(null, event, "User: 1 - Event_8");
+
+
+
+
+        //AOP statistics
+        app.outputLoggingCounter();
 
         ctx.close();
     }

@@ -12,6 +12,10 @@
         <java.ver>1.8</java.ver>
         <maven.ver>3.6.1</maven.ver>
         <spring.ver>4.3.9.RELEASE</spring.ver>
+        <commons.io.version>2.4</commons.io.version>
+        <junit.version>4.12</junit.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <aspectj.ver>1.8.10</aspectj.ver>
     </properties>
 
     <dependencies>
@@ -42,9 +46,25 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.4</version>
+            <version>${commons.io.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.ver}</version>
+        </dependency>
 
     </dependencies>
 
@@ -57,13 +77,15 @@
                 <configuration>
                     <source>${java.ver}</source>
                     <target>${java.ver}</target>
+                    <compilerVersion>${java.ver}</compilerVersion>
                     <compilerArgument>-Xlint:all</compilerArgument>
-                    <showWarnings>true</showWarnings>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <fork>true</fork>
                     <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
